@@ -1,0 +1,18 @@
+{
+  "name": "minha-api-vercel",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "tsc",
+    "start": "vercel start"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.3",
+    "@vercel/node": "^3.0.7",
+    "prisma": "^5.0.0"
+  }
+}
