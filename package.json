@@ -6,12 +6,12 @@
     "dev": "vercel dev",
     "start": "vercel start"
   },
+  "dependencies": {
+    "@prisma/client": "^5.0.0"
+  },
   "devDependencies": {
-    "@prisma/client": "^6.10.1",
     "@vercel/node": "^3.0.7",
-    "i": "^0.3.7",
-    "npm": "^11.4.2",
-    "prisma": "^6.10.1",
+    "prisma": "^5.0.0",
     "typescript": "^5.1.3"
   }
 }
