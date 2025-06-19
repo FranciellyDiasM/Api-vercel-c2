@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title> API - Francielly D. </title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1> API - Usuários e Posts</h1>
+
+  <section>
+    <h2>Criar Usuário</h2>
+    <label for="nome">Nome:</label>
+    <input id="nome" type="text" />
+    <label for="email">Email:</label>
+    <input id="email" type="email" />
+    <button onclick="criarUsuario()">Enviar</button>
+    <div class="result" id="resUsuario"></div>
+  </section>
+
+  <section>
+    <h2>Listar Usuários</h2>
+    <button onclick="listarUsuarios()">Listar</button>
+    <div class="result" id="listaUsuarios"></div>
+  </section>
+
+  <section>
+    <h2>Criar Post</h2>
+    <label for="titulo">Título:</label>
+    <input id="titulo" type="text" />
+    <label for="conteudo">Conteúdo:</label>
+    <input id="conteudo" type="text" />
+    <label for="autorId">ID do Autor:</label>
+    <input id="autorId" type="number" />
+    <button onclick="criarPost()">Enviar</button>
+    <div class="result" id="resPost"></div>
+  </section>
+
+  <section>
+    <h2>Listar Posts</h2>
+    <button onclick="listarPosts()">Listar</button>
+    <div class="result" id="listaPosts"></div>
+  </section>
+
+  <script>
+    const api = '/api'; // ou "http://localhost:3000/api" para testes locais
+
+    async function criarUsuario() {
+      const nome = document.getElementById('nome').value;
+      const email = document.getElementById('email').value;
+      const res = await fetch(`${api}/user`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ name: nome, email })
+      });
+      document.getElementById('resUsuario').textContent = await res.text();
+    }
+
+    async function listarUsuarios() {
+      const res = await fetch(`${api}/user`);
+      const data = await res.json();
+      document.getElementById('listaUsuarios').textContent = JSON.stringify(data, null, 2);
+    }
+
+    async function criarPost() {
+      const titulo = document.getElementById('titulo').value;
+      const conteudo = document.getElementById('conteudo').value;
+      const autorId = Number(document.getElementById('autorId').value);
+      const res = await fetch(`${api}/post`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ title: titulo, content: conteudo, authorId })
+      });
+      document.getElementById('resPost').textContent = await res.text();
+    }
+
+    async function listarPosts() {
+      const res = await fetch(`${api}/post`);
+      const data = await res.json();
+      document.getElementById('listaPosts').textContent = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
