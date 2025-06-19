@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "postinstall": "chmod +x node_modules/.bin/tsc",
+  "build": "tsc",
     "dev": "vercel dev",
     "start": "vercel start"
   },
